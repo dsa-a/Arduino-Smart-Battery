@@ -225,6 +225,12 @@ void info() {
     Read123();
   } else {
     Serial.println(F("Unsealed"));
+    if (!(buff[1]&0b01000000)) {
+      Serial.println(F("Pack in Full Access mode"));
+      ReadBlockSMB(0x60); Serial.print(F("UnSealKey: ")); printHEX(buff[2]); printHEX(buff[1]); printHEX(buff[4]); printHEX(buff[3]); Serial.println(" Hex");
+      ReadBlockSMB(0x61); Serial.print(F("FullAccessKey: ")); printHEX(buff[2]); printHEX(buff[1]); printHEX(buff[4]); printHEX(buff[3]); Serial.println(" Hex");
+      ReadBlockSMB(0x62); Serial.print(F("PFKey: ")); printHEX(buff[2]); printHEX(buff[1]); printHEX(buff[4]); printHEX(buff[3]); Serial.println(" Hex");
+    };
     ReadSMB(byte(0x0C)); Serial.print(F("MaxError: ")); Serial.print(buff[0]); Serial.println(" %");
     ReadSMB(word(0x0051)); Serial.print(F("SafetyStatus: ")); 
     if ((buff[1]==0)&&(buff[0]==0)) {
