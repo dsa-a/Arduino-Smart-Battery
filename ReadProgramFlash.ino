@@ -18,6 +18,7 @@
  */
 
 #include <Wire.h>                 //!!! The WIRE library must be edited to increase the buffer to 98 (0x62) bytes !!!
+                                  //!!! The standard Arduino Wire library needs to be changed in two places - Wire.h and utility/twi.h !!!
 
 //#define debug
 
